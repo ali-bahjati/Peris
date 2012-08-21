@@ -1,4 +1,0 @@
-Peris
-=====
-
-Peris Pattern Recognizer

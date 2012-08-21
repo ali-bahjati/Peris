@@ -1,15 +1,16 @@
 Peris Pattern Recognizer
+
 It's a program that learn a pattern, then can recognize it.
 
 Peris is licensed under GPLv3.
 
 ////Installation////
-We don't have installation yet, for using you just need to compile it and run the binary
+We don't have installation yet, for using you just need to compile it and run the binary.
 
-you will need qt4 and g++
+you will need qt4 and g++.
 
-to enter the directory
+to enter the directory:
 	cd PATH
-to compile
+to compile:
 	make
-then run SimpleDrawer binary file. Simple Drawer is a qt GUI to test the program
+then run SimpleDrawer binary file. Simple Drawer is a qt GUI to test the program.

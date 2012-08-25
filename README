@@ -12,5 +12,6 @@ you will need qt4 and g++.
 to enter the directory:
 	cd PATH
 to compile:
+	qmake
 	make
 then run SimpleDrawer binary file. Simple Drawer is a qt GUI to test the program.

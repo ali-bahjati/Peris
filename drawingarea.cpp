@@ -53,21 +53,27 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent *)
 
     PreProcessing::Scale scale;
     scale.scaleWidth = 300;
-    scale.squareScale(DrawingArea::pointsX, DrawingArea::pointsY);
+    scale.rectScale(DrawingArea::pointsX, DrawingArea::pointsY);
 
 
     DrawingArea::pointsX = scale.getPointsX();
     DrawingArea::pointsY = scale.getPointsY();
 
+    PreProcessing::LinePoints linePoints;
+    linePoints.linesPoints(DrawingArea::pointsX, DrawingArea::pointsY);
+
+    DrawingArea::pointsX = linePoints.getPointsX();
+    DrawingArea::pointsY = linePoints.getPointsY();
+
     QPainter painter(DrawingArea::pixmap);
     painter.setPen(Qt::red);
     painter.drawRect(0,0,300,300);
+    painter.setPen(Qt::blue);
 
-    for (unsigned int i = 0; i < DrawingArea::pointsX.size() ; i++)
+    for (float i = 0; i < DrawingArea::pointsX.size() ; i++)
     {
-        painter.drawEllipse(DrawingArea::pointsX[i] - 2, DrawingArea::pointsY[i] - 2,4,4);
-    }
-
+        painter.drawEllipse(DrawingArea::pointsX[i], DrawingArea::pointsY[i],1,0);
+    }  
 
     update();
 }

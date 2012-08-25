@@ -13,10 +13,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         drawingform.cpp \
     drawingarea.cpp \
-    scale.cpp
+    scale.cpp \
+    linepoints.cpp
 
 HEADERS  += drawingform.h \
     drawingarea.h \
-    scale.h
+    scale.h \
+    linepoints.h
 
 FORMS    += drawingform.ui

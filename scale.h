@@ -11,17 +11,19 @@ namespace PreProcessing
     {
     public:
         Scale();
-        void rectScale( vector<unsigned int> x, vector<unsigned int> y);
-        void squareScale( vector<unsigned int> x, vector<unsigned int> y);
-        vector<unsigned int> getPointsX();
-        vector<unsigned int> getPointsY();
+        void rectScale( vector<float> x, vector<float> y);
+        void squareScale( vector<float> x, vector<float> y);
+        vector<float> getPointsX();
+        vector<float> getPointsY();
 
         int scaleWidth;
 
     private:
-        int* drawingRect(vector<unsigned int> x, vector<unsigned int> y);
-        vector<unsigned int> pointsX;
-        vector<unsigned int> pointsY;
+        int* drawingRect(vector<float> x, vector<float> y);
+        void clearPoints();
+
+        vector<float> pointsX;
+        vector<float> pointsY;
     };
 }
 #endif // SCALE_H

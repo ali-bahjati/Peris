@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "scale.h"
+#include "linepoints.h"
 
 using namespace std;
 
@@ -31,8 +32,8 @@ private:
     QPixmap *pixmap;
     int lastx;
     int lasty;
-    vector<unsigned int> pointsX;
-    vector<unsigned int> pointsY;
+    vector<float> pointsX;
+    vector<float> pointsY;
 };
 
 #endif // DRAWINGAREA_H

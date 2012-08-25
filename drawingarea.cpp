@@ -52,7 +52,7 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent *)
     //just for testing, we will have a tester class later ;)
 
     PreProcessing::Scale scale;
-    scale.scaleWidth = 300;
+    scale.scaleWidth = 400;
     scale.rectScale(DrawingArea::pointsX, DrawingArea::pointsY);
 
 
@@ -67,10 +67,10 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent *)
 
     QPainter painter(DrawingArea::pixmap);
     painter.setPen(Qt::red);
-    painter.drawRect(0,0,300,300);
+    painter.drawRect(0,0,400 ,400 - 1);
     painter.setPen(Qt::blue);
 
-    for (float i = 0; i < DrawingArea::pointsX.size() ; i++)
+    for (unsigned int i = 0; i < DrawingArea::pointsX.size() ; i++)
     {
         painter.drawEllipse(DrawingArea::pointsX[i], DrawingArea::pointsY[i],1,0);
     }  

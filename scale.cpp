@@ -18,14 +18,14 @@ void Scale::rectScale(vector<float> x, vector<float> y)
         ratio = Scale::scaleWidth / static_cast<float>(drawingRect[2] - drawingRect[3]);
 
 
-    for(float i = 0; i < x.size(); i++)
+    for(unsigned int i = 0; i < x.size(); i++)
     {
         float newX = static_cast<float>((x[i] - drawingRect[1]) * ratio);
 
         pointsX.push_back(newX);
     }
 
-    for(float i = 0; i < y.size(); i++)
+    for(unsigned int i = 0; i < y.size(); i++)
     {
         float newY = static_cast<float>((y[i] - drawingRect[3]) * ratio);
 
@@ -43,14 +43,14 @@ void Scale::squareScale(vector<float> x, vector<float> y)
 
     Scale::clearPoints();
 
-    for(float i = 0; i < x.size(); i++)
+    for(unsigned int i = 0; i < x.size(); i++)
     {
         float newX = static_cast<float>((x[i] - drawingRect[1]) * xRatio);
 
         pointsX.push_back(newX);
     }
 
-    for(float i = 0; i < y.size(); i++)
+    for(unsigned int i = 0; i < y.size(); i++)
     {
         float newY = static_cast<float>((y[i] - drawingRect[3]) * yRatio);
 
@@ -63,13 +63,13 @@ int* Scale::drawingRect(vector<float> x, vector<float> y)
     int* rect = new int[4];
     float maximum = 0;
 
-    for (float i = 0; i< x.size(); i++)
+    for (unsigned int i = 0; i< x.size(); i++)
         if (maximum < x[i])
             maximum = x[i];
 
     float minimum = maximum;
 
-    for (float i = 0; i< x.size(); i++)
+    for (unsigned int i = 0; i< x.size(); i++)
         if (minimum > x[i])
             minimum = x[i];
 
@@ -78,13 +78,13 @@ int* Scale::drawingRect(vector<float> x, vector<float> y)
 
     maximum = 0;
 
-    for (float i = 0; i< y.size(); i++)
+    for (unsigned int i = 0; i< y.size(); i++)
         if (maximum < y[i])
             maximum = y[i];
 
     minimum = maximum;
 
-    for (float i = 0; i< y.size(); i++)
+    for (unsigned int i = 0; i< y.size(); i++)
         if (minimum > y[i])
             minimum = y[i];
 

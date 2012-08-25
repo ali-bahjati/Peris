@@ -14,11 +14,13 @@ SOURCES += main.cpp\
         drawingform.cpp \
     drawingarea.cpp \
     scale.cpp \
-    linepoints.cpp
+    linepoints.cpp \
+    smooth.cpp
 
 HEADERS  += drawingform.h \
     drawingarea.h \
     scale.h \
-    linepoints.h
+    linepoints.h \
+    smooth.h
 
 FORMS    += drawingform.ui

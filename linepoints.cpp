@@ -46,10 +46,10 @@ void LinePoints::linePoints(float x1, float y1, float x2, float y2)
         int Xdiff,Ydiff;
         int newX, newY;
 
-        Xdiff = lineX[0] - x1;
-        Ydiff = lineY[0] - y1;
-        newX = lineX[1] - Xdiff;
-        newY = lineY[1] - Ydiff;
+        Xdiff = x1 - lineX[0];
+        Ydiff = y1 - lineY[0];
+        newX = lineX[1] + Xdiff;
+        newY = lineY[1] + Ydiff;
 
         LinePoints::pointsX.push_back(newX);
         LinePoints::pointsY.push_back(newY);

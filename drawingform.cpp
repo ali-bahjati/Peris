@@ -14,3 +14,7 @@ DrawingForm::~DrawingForm()
     delete ui;
 }
 
+void DrawingForm::on_closeButton_clicked()
+{
+    this->close();
+}

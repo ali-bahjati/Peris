@@ -10,6 +10,7 @@
 
 #include "scale.h"
 #include "linepoints.h"
+#include "smooth.h"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ signals:
     
 public slots:
     void on_resetButton_clicked();
+    void on_closeButton_clicked();
 private:
     void paintEvent(QPaintEvent *);
     void mouseMoveEvent(QMouseEvent *e);
@@ -32,8 +34,8 @@ private:
     QPixmap *pixmap;
     int lastx;
     int lasty;
-    vector<float> pointsX;
-    vector<float> pointsY;
+    vector<double> pointsX;
+    vector<double> pointsY;
 };
 
 #endif // DRAWINGAREA_H

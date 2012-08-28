@@ -59,11 +59,24 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent *)
     DrawingArea::pointsX = scale.getPointsX();
     DrawingArea::pointsY = scale.getPointsY();
 
+    PreProcessing::Smooth smooth;
+    smooth.smoothPoints(DrawingArea::pointsX, DrawingArea::pointsY);
+
+    DrawingArea::pointsX = smooth.getPointsX();
+    DrawingArea::pointsY = smooth.getPointsY();
+
     PreProcessing::LinePoints linePoints;
     linePoints.linesPoints(DrawingArea::pointsX, DrawingArea::pointsY);
 
     DrawingArea::pointsX = linePoints.getPointsX();
     DrawingArea::pointsY = linePoints.getPointsY();
+
+    smooth.smoothPoints(DrawingArea::pointsX, DrawingArea::pointsY);
+
+    DrawingArea::pointsX = smooth.getPointsX();
+    DrawingArea::pointsY = smooth.getPointsY();
+
+    //Painting Part
 
     QPainter painter(DrawingArea::pixmap);
     painter.setPen(Qt::red);
@@ -98,4 +111,9 @@ void DrawingArea::on_resetButton_clicked()
     QPainter painter(DrawingArea::pixmap);
     painter.fillRect(0,0,width(),height(),Qt::white);
     update();
+}
+
+void DrawingArea::on_closeButton_clicked()
+{
+    this->close();
 }

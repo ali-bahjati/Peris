@@ -6,7 +6,7 @@ LinePoints::LinePoints()
 {
 }
 
-void LinePoints::linesPoints(vector<float> x, vector<float> y)
+void LinePoints::linesPoints(vector<double> x, vector<double> y)
 {
     if (x.size() > 1)
     {
@@ -22,12 +22,10 @@ void LinePoints::linesPoints(vector<float> x, vector<float> y)
     }
 }
 
-void LinePoints::linePoints(float x1, float y1, float x2, float y2)
+void LinePoints::linePoints(double x1, double y1, double x2, double y2)
 {
-    Scale scaler;
-
-    vector<float> lineX(2);
-    vector<float> lineY(2);
+    vector<double> lineX(2);
+    vector<double> lineY(2);
 
     lineX[0] = x1;
     lineX[1] = x2;
@@ -36,24 +34,9 @@ void LinePoints::linePoints(float x1, float y1, float x2, float y2)
 
     int rate = LinePoints::rate( abs( x1 - x2 ) , abs ( y1 - y2 ) );
 
-    for (int i = 1; i < rate + 1; i++)
+    for (double i = 1; i < rate + 1; i++)
     {
-        scaler.scaleWidth = i;
-        scaler.rectScale(lineX,lineY);
-        lineX = scaler.getPointsX();
-        lineY = scaler.getPointsY();
-
-        int Xdiff,Ydiff;
-        int newX, newY;
-
-        Xdiff = x1 - lineX[0];
-        Ydiff = y1 - lineY[0];
-        newX = lineX[1] + Xdiff;
-        newY = lineY[1] + Ydiff;
-
-        LinePoints::pointsX.push_back(newX);
-        LinePoints::pointsY.push_back(newY);
-
+        LinePoints::pointOfLine(i, lineX, lineY);
     }
 }
 
@@ -68,12 +51,35 @@ int LinePoints::rate(int xRate, int yRate)
     return rate;
 }
 
-vector<float> LinePoints::getPointsX()
+vector<double> LinePoints::getPointsX()
 {
     return LinePoints::pointsX;
 }
 
-vector<float> LinePoints::getPointsY()
+vector<double> LinePoints::getPointsY()
 {
     return LinePoints::pointsY;
+}
+
+void LinePoints::pointOfLine(double i, vector<double> lineX, vector<double> lineY)
+{
+    Scale scaler;
+    double x = lineX[0];
+    double y = lineY[0];
+
+    scaler.scaleWidth = i;
+    scaler.rectScale(lineX,lineY);
+    lineX = scaler.getPointsX();
+    lineY = scaler.getPointsY();
+
+    int Xdiff,Ydiff;
+    int newX, newY;
+
+    Xdiff = x - lineX[0];
+    Ydiff = y - lineY[0];
+    newX = lineX[1] + Xdiff;
+    newY = lineY[1] + Ydiff;
+
+    LinePoints::pointsX.push_back(newX);
+    LinePoints::pointsY.push_back(newY);
 }

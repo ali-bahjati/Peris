@@ -15,6 +15,9 @@ public:
     explicit DrawingForm(QWidget *parent = 0);
     ~DrawingForm();
 
+private slots:
+    void on_closeButton_clicked();
+
 private:
     Ui::DrawingForm *ui;
 };

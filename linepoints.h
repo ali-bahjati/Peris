@@ -11,14 +11,14 @@ namespace PreProcessing
     {
     public:
         LinePoints();
-        void linesPoints( vector<float> x , vector<float> y );
-        void linePoints( float x1, float y1 , float x2 , float y2 );
-        vector<float> getPointsX();
-        vector<float> getPointsY();
-
+        void linesPoints( vector<double> x , vector<double> y );
+        void linePoints( double x1, double y1 , double x2 , double y2 );
+        void pointOfLine ( double i, vector<double> lineX, vector<double> lineY);
+        vector<double> getPointsX();
+        vector<double> getPointsY();
     private:
-        vector<float> pointsX;
-        vector<float> pointsY;
+        vector<double> pointsX;
+        vector<double> pointsY;
         int rate(int xRate, int yRate);
     };
 }

@@ -6,14 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
+<<<<<<< HEAD
     <width>885</width>
     <height>579</height>
+=======
+    <width>720</width>
+    <height>420</height>
+>>>>>>> 86676bede2834bec473bb363ac16819cedfbc482
    </rect>
   </property>
   <property name="windowTitle">
    <string>DrawingForm</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+<<<<<<< HEAD
    <widget class="QPushButton" name="resetButton">
     <property name="geometry">
      <rect>
@@ -48,6 +54,29 @@
     </property>
     <property name="text">
      <string>Close</string>
+=======
+   <widget class="DrawingArea" name="drawingArea">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>10</y>
+      <width>600</width>
+      <height>400</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="resetButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>93</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Reset</string>
+>>>>>>> 86676bede2834bec473bb363ac16819cedfbc482
     </property>
    </widget>
   </widget>
@@ -57,9 +86,15 @@
   <customwidget>
    <class>DrawingArea</class>
    <extends>QGraphicsView</extends>
+<<<<<<< HEAD
    <header location="global">drawingarea.h</header>
    <slots>
     <slot>resetButton_clicked()</slot>
+=======
+   <header>drawingarea.h</header>
+   <slots>
+    <slot>on_resetButton_clicked()</slot>
+>>>>>>> 86676bede2834bec473bb363ac16819cedfbc482
    </slots>
   </customwidget>
  </customwidgets>
@@ -69,6 +104,7 @@
    <sender>resetButton</sender>
    <signal>clicked()</signal>
    <receiver>drawingArea</receiver>
+<<<<<<< HEAD
    <slot>resetButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -78,6 +114,17 @@
     <hint type="destinationlabel">
      <x>135</x>
      <y>40</y>
+=======
+   <slot>on_resetButton_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>53</x>
+     <y>87</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>164</x>
+     <y>162</y>
+>>>>>>> 86676bede2834bec473bb363ac16819cedfbc482
     </hint>
    </hints>
   </connection>

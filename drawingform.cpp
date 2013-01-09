@@ -6,6 +6,10 @@ DrawingForm::DrawingForm(QWidget *parent) :
     ui(new Ui::DrawingForm)
 {
     ui->setupUi(this);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 86676bede2834bec473bb363ac16819cedfbc482
 }
 
 DrawingForm::~DrawingForm()
@@ -13,7 +17,10 @@ DrawingForm::~DrawingForm()
     delete ui;
 }
 
+<<<<<<< HEAD
 void DrawingForm::on_closeButton_clicked()
 {
     this->close();
 }
+=======
+>>>>>>> 86676bede2834bec473bb363ac16819cedfbc482

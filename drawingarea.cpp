@@ -78,13 +78,15 @@ void DrawingArea::mouseReleaseEvent(QMouseEvent *e)
 
 void DrawingArea::startProcess()
 {
+	QPainter painter(pixmap);
+
+	points.makeBest();
 	Scale scaler;
 	scaler.rectScale(points, scaleWidth);
 	LinePoints lp;
 
 
 
-	QPainter painter(pixmap);
 
 	painter.setPen(Qt::red);
 	painter.drawRect(0,0,scaleWidth,scaleWidth);
@@ -113,48 +115,50 @@ void DrawingArea::startProcess()
 
 	//pixmap->save("/home/ali/3.png");
 
-	SegmentPoints segmentor;
-
-	PList segmentedPoints = segmentor.getSegmentPoints_FPCAlgorithm(points,20);
-
+	string result;
+	vector<Directions> newPath;
 	DataBase db;
-	vector<Directions> path = db.generatePath(segmentedPoints);
-	string result = db.findPath(path);
+
+	for(int i = 0 ; i < 4; i++)
+	{
+		points.rotatePoints(90);
+		scaler.rectScale(points, scaleWidth);
+
+		SegmentPoints segmentor;
+
+		PList segmentedPoints = segmentor.getSegmentPoints_FPCAlgorithm(points,20);
 
 
-	//If it couldn't find the answer, it will add it to database as shown below
+		vector<Directions> path = db.generatePath(segmentedPoints);
+		result = db.findPath(path);
+		if ( result != "" )
+		{
+			painter.drawText(100,300,100,100,0,result.c_str());
+			painter.setPen( Qt::red);
+
+			for(int i =0 ;i < segmentedPoints.getSize(); i++)
+			{
+
+				//painter.drawEllipse(segmentedPoints.getPoint(i).x-3,segmentedPoints.getPoint(i).y-3,6,6);
+
+				painter.drawLine(segmentedPoints.getPoint(i-1).x, segmentedPoints.getPoint(i-1).y, segmentedPoints.getPoint(i).x,segmentedPoints.getPoint(i).y);
+			}
+			break;
+		}
+		else
+		{
+			newPath = path;
+		}
+
+
+		//If it couldn't find the answer, it will add it to database as shown below
+
+	}
 	if ( result == "" )
 	{
-		db.addPath(path,"m");
+		db.addPath(newPath,"3");
 	}
 
-	else
-	{
-		painter.drawText(100,100,100,100,0,result.c_str());
-	}
-
-	painter.setPen(Qt::red);
-	for(int i =0 ;i < segmentedPoints.getSize(); i++)
-	{
-
-		painter.drawEllipse(segmentedPoints.getPoint(i).x-3,segmentedPoints.getPoint(i).y-3,6,6);
-
-		//painter.drawLine(points.getPoint(i-1).x, points.getPoint(i-1).y, points.getPoint(i).x,points.getPoint(i).y);
-	}
-
-	//pixmap->save("/home/ali/4.png");
-
-	//painter.fillRect(0,0,width(),height(),Qt::white);
-
-	for(int i =0 ;i < segmentedPoints.getSize(); i++)
-	{
-
-		painter.drawEllipse(segmentedPoints.getPoint(i).x-3,segmentedPoints.getPoint(i).y-3,6,6);
-
-		//painter.drawLine(points.getPoint(i-1).x, points.getPoint(i-1).y, points.getPoint(i).x,points.getPoint(i).y);
-	}
-
-	//pixmap->save("/home/ali/5.png");
 
 
 	update();

@@ -1,6 +1,7 @@
 #ifndef POINT_H
 #define POINT_H
 
+#include <cmath>
 class Point
 {
 public:
@@ -23,6 +24,7 @@ public:
 	PList(const PList&);
 	~PList();
 	void operator =(const PList&);
+	Point& operator [](int);
 
 	int getSize();
 	///Functions
@@ -40,6 +42,8 @@ public:
 
 	//Some Features about points
 	PList drawingRect();
+	void rotatePoints(double);
+	void makeBest();
 	void removeRepetition();
 
 private:

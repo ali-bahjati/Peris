@@ -1,6 +1,6 @@
 #include "scale.h"
 using namespace PreProcessing;
-
+using namespace std;
 Scale::Scale()
 {
 }
@@ -18,8 +18,8 @@ void Scale::rectScale(PList& points, double scaleWidth)
 	for (int i = 0 ; i < points.getSize(); i++)
 	{
 		Point p;
-		p.x =( points.getPoint(i).x - dRect.getPoint(0).x) * ratio;
-		p.y =( points.getPoint(i).y - dRect.getPoint(0).y) * ratio;
+		p.x = abs(points.getPoint(i).x - dRect.getPoint(0).x) * ratio;
+		p.y = abs(points.getPoint(i).y - dRect.getPoint(0).y) * ratio;
 
 		points.replaceIndex(i,p);
 	}

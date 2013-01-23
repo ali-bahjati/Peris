@@ -74,6 +74,10 @@ void PList::operator =(const PList& p)
 	}
 }
 
+Point& PList::operator [](int index){
+	return getPoint(index);
+}
+
 PList::~PList()
 {
 	while(s != 0 )
@@ -214,7 +218,7 @@ void PList::clear()
 PList PList::drawingRect()
 {
 	PList result;
-	int maxX = 0, maxY = 0 ,minX, minY;
+	int maxX = getPoint(0).x, maxY = getPoint(0).y ,minX, minY;
 
 	for(int i = 0;i < getSize(); i++)
 	{
@@ -255,4 +259,48 @@ void PList::removeRepetition()
 				removeIndex(i);
 				i--;
 			}
+}
+
+void PList::rotatePoints(double ang)
+{
+	for(int i = 0 ; i < getSize(); i++)
+	{
+		Point p = getPoint(i);
+		double angle = atan2(p.y,p.x) * 180 / M_PI;
+		angle += ang;
+		if ( angle < 0 )
+			angle += 360;
+		if ( angle >= 360 )
+			angle -= 360;
+		angle = M_PI * angle / 180.0;
+		double l = sqrt (p.x * p.x + p.y * p.y );
+		p.x = cos(angle)*l;
+		p.y = sin(angle)*l;
+
+		replaceIndex(i,p);
+	}
+}
+
+void PList::makeBest()
+{
+	rotatePoints(-90);
+	double minArea,minAngle = 0;
+	{
+		PList dr = drawingRect();
+		double w = dr[1].x  - dr[0].x;
+		double h = dr[1].y - dr[0].y;
+		minArea = h*w;
+	}
+	for(int i = 1 ; i <= 11; i++){
+		rotatePoints(15);
+		PList dr = drawingRect();
+		double w = dr[1].x  - dr[0].x;
+		double h = dr[1].y - dr[0].y;
+		double area = h * w;
+		if ( area < minArea){
+			minArea = area;
+			minAngle = (15*i)-90;
+		}
+	}
+	rotatePoints(minAngle - 75);
 }
